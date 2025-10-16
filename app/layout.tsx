@@ -5,8 +5,11 @@ import "./globals.css"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Evergreen Remedy Ghana - Forever Arctic Sea Kids Brain Booster',
+   title: 'Evergreen Remedy Ghana - Forever Arctic Sea Kids Brain Booster',
   description: 'Help your child learn faster, remember better & excel in school with Forever Arctic Sea - Premium Omega-3, DHA & EPA supplement for growing children.',
+  icons: {
+    icon: '/egr-logo.ico',
+  },
 }
 
 export default function RootLayout({

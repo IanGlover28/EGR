@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Clock, MapPin, Mail, ShoppingCart, Star, CheckCircle, Facebook, ChevronDown, Menu, X, ArrowLeft, Phone, User, Package, MessageSquare } from 'lucide-react';
+import { Clock, MapPin, Mail, ShoppingCart, Star, CheckCircle, Menu, X, ArrowLeft, Phone, User, Package, MessageSquare } from 'lucide-react';
 import {motion, Variants} from "framer-motion"
+import Image from 'next/image';
 // Logo Component
 const EvergreenLogo = () => (
   <svg width="200" height="60" viewBox="0 0 200 60" className="w-full h-full">
@@ -30,7 +31,7 @@ const EvergreenLogo = () => (
 const EvergreenRemedyWebsite = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 45, seconds: 30 });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState(null);
+  // const [selectedPackage, setSelectedPackage] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -173,9 +174,9 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
       price: 0,
       note: '',
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     console.error('Order submission failed:', err);
-    // User-friendly fallback message
     alert(
       err?.message ||
         'There was an error sending your order. Please try again later or contact us at supplegenix@gmail.com'
@@ -279,7 +280,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                 <h1 className="text-3xl font-bold mb-4">Complete Your Order</h1>
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="text-blue-100 mb-2">You're ordering:</p>
+                    <p className="text-blue-100 mb-2">You&apos;re ordering:</p>
                     <p className="text-2xl font-bold">{formData.packageType}</p>
                     <p className="text-lg">{formData.quantity} bottle(s) of Forever Arctic Sea</p>
                   </div>
@@ -411,7 +412,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
               <div className="bg-white p-6 rounded-lg shadow">
                 <Phone className="w-12 h-12 text-green-600 mx-auto mb-3" />
                 <h3 className="font-bold text-gray-900 mb-2">Quick Response</h3>
-                <p className="text-gray-600 text-sm">We'll contact you soon</p>
+                <p className="text-gray-600 text-sm">We&apos;ll contact you soon</p>
               </div>
             </div>
           </div>
@@ -509,7 +510,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
             </h1>
             <div className="flex gap-4">
               <a href="#pricing" className="bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition shadow-lg">
-                Shop Now
+                Order Now
               </a>
               <a
                 href="https://www.tiktok.com/@evergreenremedyghana"
@@ -523,78 +524,48 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
           </motion.div>
           <motion.div variants={fadeUp}>
             <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl p-8 shadow-2xl">
-              <img src="/product.png" alt="Forever Arctic Sea" className="w-full h-full object-contain rounded-xl" />
-            </div>
+<Image
+  src="/product.png"
+  alt="Forever Arctic Sea"
+  width={500}
+  height={500}
+  className="w-full h-full object-contain rounded-xl"
+/>            </div>
           </motion.div>
         </div>
       </motion.section> 
       </section>
 
-      {/* Countdown Timer */}
-      <motion.section
-  className="bg-red-600 text-white py-6"
-  initial={{ opacity: 0, y: -30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
->
+    {/* Countdown Timer */}
+<section className="bg-red-600 text-white py-6">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
       {/* Title and Icon */}
-      <motion.div
-        className="flex items-center gap-2"
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
+      <div className="flex items-center gap-2">
         <Clock className="w-6 h-6 animate-pulse" />
         <span className="font-bold text-lg">Limited Time Offer Ends In:</span>
-      </motion.div>
+      </div>
 
       {/* Countdown Boxes */}
-      <motion.div
-        className="flex gap-4"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          hidden: { opacity: 0, scale: 0.8 },
-          visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-              type: "spring",
-              stiffness: 120,
-              damping: 10,
-              staggerChildren: 0.15,
-            },
-          },
-        }}
-      >
+      <div className="flex gap-4">
         {[
           { label: "Hours", value: String(timeLeft.hours).padStart(2, "0") },
           { label: "Minutes", value: String(timeLeft.minutes).padStart(2, "0") },
           { label: "Seconds", value: String(timeLeft.seconds).padStart(2, "0") },
         ].map((item, index) => (
-          <motion.div
+          <div
             key={index}
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0 },
-            }}
             className="bg-white text-red-600 px-4 py-2 rounded-lg font-bold text-center min-w-16 shadow-md hover:scale-105 transition-transform duration-200"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
           >
             <div className="text-2xl">{item.value}</div>
             <div className="text-xs">{item.label}</div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   </div>
-</motion.section>
+</section>
+
 
       {/* Product Section */}
      <motion.section
@@ -618,7 +589,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
             Forever Arctic Sea
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Premium Kids Brain Booster - Unlock Your Child's Full Potential
+            Premium Kids Brain Booster - Unlock Your Child&apos;s Full Potential
           </p>
         </motion.div>
 
@@ -632,11 +603,11 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden aspect-video">
+            <div className="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden w-64 h-96 mx-auto">
               <video
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
                 controls
-                poster="/video-thumbnail.jpg"
+                poster="/thumbnail.png"
               >
                 <source src="/ad.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -651,7 +622,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+            <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">
               Give Your Child the Smart Advantage
             </h3>
             <p className="text-lg text-gray-600 mb-6">
@@ -781,7 +752,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
              Quotes
             </h2>
-            <p className="text-xl text-gray-600">See what other parents are saying</p>
+            <p className="text-xl text-gray-600">Reviews from Parents who have tried our Products</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -792,7 +763,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                <p className="text-gray-700 mb-4 italic">&apos;{testimonial.text}&apos;</p>
                 <div className="flex items-center gap-3">
                   <div className="text-3xl">{testimonial.image}</div>
                   <div>
@@ -816,7 +787,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Choose Your Package
             </h2>
-            <p className="text-xl text-gray-600">Invest in your child's future today</p>
+            <p className="text-xl text-gray-600">Invest in your child&apos;s future today</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
