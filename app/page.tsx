@@ -276,7 +276,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
               {/* Order Summary */}
-              <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white p-8">
+              <div className="bg-green-600 text-white p-8">
                 <h1 className="text-3xl font-bold mb-4">Complete Your Order</h1>
                 <div className="flex justify-between items-center">
                   <div>
@@ -305,14 +305,14 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                     placeholder="Enter your full name"
                   />
                 </div>
 
                 {/* Phone */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-black font-semibold mb-2">
                     <Phone className="w-5 h-5 inline mr-2" />
                     Phone Number *
                   </label>
@@ -322,14 +322,14 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                     placeholder="e.g., 0244123456"
                   />
                 </div>
 
                 {/* Location */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-black font-semibold mb-2">
                     <MapPin className="w-5 h-5 inline mr-2" />
                     Delivery Location *
                   </label>
@@ -338,7 +338,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                     value={formData.location}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
                   >
                     <option value="">Select your location</option>
                     <option value="Accra">Accra</option>
@@ -356,7 +356,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
 
                 {/* Additional Note */}
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-black font-semibold mb-2">
                     <MessageSquare className="w-5 h-5 inline mr-2" />
                     Additional Note (Optional)
                   </label>
@@ -365,7 +365,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                     value={formData.note}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
+                    className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
                     placeholder="Any special delivery instructions or questions?"
                   />
                 </div>
@@ -505,21 +505,24 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
       >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6 items-center">
           <motion.div variants={fadeUp}>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
-              Give your child the edge to think sharper, learn faster & shine brighter!
-            </h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug sm:leading-tight md:leading-tight">
+          Give your child the edge to think sharper, learn faster & shine brighter!
+        </h1>
             <div className="flex gap-4">
-              <a href="#pricing" className="bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition shadow-lg">
-                Order Now
-              </a>
               <a
-                href="https://www.tiktok.com/@evergreenremedyghana"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-black text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition shadow-lg"
-              >
-                TikTok Page
-              </a>
+            href="#pricing"
+            className="bg-green-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-green-700 transition shadow-lg text-center"
+          >
+            Order Now
+          </a>
+          <a
+            href="https://www.tiktok.com/@evergreenremedyghana"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-black text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-gray-800 transition shadow-lg text-center"
+          >
+            TikTok Page
+          </a>
             </div>
           </motion.div>
           <motion.div variants={fadeUp}>
