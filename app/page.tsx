@@ -6,27 +6,67 @@ import {motion, Variants} from "framer-motion"
 import Image from 'next/image';
 // Logo Component
 const EvergreenLogo = () => (
-  <svg width="200" height="60" viewBox="0 0 200 60" className="w-full h-full">
-    <defs>
-      <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style={{ stopColor: '#10b981', stopOpacity: 1 }} />
-        <stop offset="100%" style={{ stopColor: '#059669', stopOpacity: 1 }} />
-      </linearGradient>
-    </defs>
-    {/* Leaf Icon */}
-    <path d="M 25 15 Q 25 5 35 10 Q 45 5 45 15 Q 45 30 35 40 Q 25 30 25 15" fill="url(#leafGradient)" />
-    <path d="M 35 10 Q 35 20 35 40" stroke="#047857" strokeWidth="2" fill="none" />
-    <path d="M 35 20 Q 40 22 42 25" stroke="#047857" strokeWidth="1.5" fill="none" />
-    <path d="M 35 25 Q 30 27 28 30" stroke="#047857" strokeWidth="1.5" fill="none" />
-    {/* Text */}
-    <text x="55" y="28" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="bold" fill="#1f2937">
-      Evergreen
-    </text>
-    <text x="55" y="45" fontFamily="Arial, sans-serif" fontSize="16" fontWeight="600" fill="#10b981">
-      Remedy Ghana
-    </text>
-  </svg>
+  <div className="flex justify-center items-center w-full">
+    <svg
+      width="240"
+      height="80"
+      viewBox="0 0 200 60"
+      className="w-full h-auto"
+    >
+      <defs>
+        <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style={{ stopColor: "#10b981", stopOpacity: 1 }} />
+          <stop offset="100%" style={{ stopColor: "#059669", stopOpacity: 1 }} />
+        </linearGradient>
+      </defs>
+      {/* Leaf Icon */}
+      <path
+        d="M 25 15 Q 25 5 35 10 Q 45 5 45 15 Q 45 30 35 40 Q 25 30 25 15"
+        fill="url(#leafGradient)"
+      />
+      <path
+        d="M 35 10 Q 35 20 35 40"
+        stroke="#047857"
+        strokeWidth="2"
+        fill="none"
+      />
+      <path
+        d="M 35 20 Q 40 22 42 25"
+        stroke="#047857"
+        strokeWidth="1.5"
+        fill="none"
+      />
+      <path
+        d="M 35 25 Q 30 27 28 30"
+        stroke="#047857"
+        strokeWidth="1.5"
+        fill="none"
+      />
+      {/* Text */}
+      <text
+        x="55"
+        y="28"
+        fontFamily="Arial, sans-serif"
+        fontSize="26"
+        fontWeight="bold"
+        fill="#1f2937"
+      >
+        Evergreen
+      </text>
+      <text
+        x="55"
+        y="50"
+        fontFamily="Arial, sans-serif"
+        fontSize="20"
+        fontWeight="600"
+        fill="#10b981"
+      >
+        Remedy Ghana
+      </text>
+    </svg>
+  </div>
 );
+
 
 const EvergreenRemedyWebsite = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 45, seconds: 30 });
@@ -328,31 +368,22 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                 </div>
 
                 {/* Location */}
-                <div>
-                  <label className="block text-black font-semibold mb-2">
-                    <MapPin className="w-5 h-5 inline mr-2" />
-                    Delivery Location *
-                  </label>
-                  <select
-                    name="location"
-                    value={formData.location}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
-                  >
-                    <option value="">Select your location</option>
-                    <option value="Accra">Accra</option>
-                    <option value="Kumasi">Kumasi</option>
-                    <option value="Tamale">Tamale</option>
-                    <option value="Takoradi">Takoradi</option>
-                    <option value="Cape Coast">Cape Coast</option>
-                    <option value="Tema">Tema</option>
-                    <option value="Sunyani">Sunyani</option>
-                    <option value="Koforidua">Koforidua</option>
-                    <option value="Ho">Ho</option>
-                    <option value="Other">Other (Nationwide Delivery Available)</option>
-                  </select>
-                </div>
+<div>
+  <label className="block text-black font-semibold mb-2">
+    <MapPin className="w-5 h-5 inline mr-2" />
+    Delivery Location *
+  </label>
+  <input
+    type="text"
+    name="location"
+    value={formData.location}
+    onChange={handleInputChange}
+    placeholder="Enter your delivery location (e.g. Accra, Kumasi, etc.)"
+    required
+    className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+  />
+</div>
+
 
                 {/* Additional Note */}
                 <div>
@@ -424,7 +455,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
       <header className="bg-white shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <div className="w-48">
+            <div className="w-48 ">
               <EvergreenLogo />
             </div>
             
@@ -436,255 +467,190 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
               <a href="#pricing" className="text-gray-700 hover:text-green-600 font-medium transition">Pricing</a>
             </nav>
 
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-green-600 text-white hover:bg-green-700 transition"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
-
-         {/* Mobile Fullscreen Sidebar Menu */}
-{mobileMenuOpen && (
-  <div
-  className={`fixed top-[64px] right-0 w-full h-[calc(100vh-64px)] bg-white z-50 flex flex-col items-center justify-center space-y-8 transform transition-transform duration-500 ease-in-out ${
-    mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-  }`}
->
-  {/* Close Button (Top Right)
-  <button
-    onClick={() => setMobileMenuOpen(false)}
-    className="absolute top-6 right-6 p-2 rounded-full bg-green-600 text-white hover:bg-green-700 transition"
-  >
-    <X size={28} />
-  </button> */}
-
-  {/* Navigation Links */}
-  <a
-    href="#product"
-    onClick={() => setMobileMenuOpen(false)}
-    className="text-2xl font-semibold text-green-600 hover:text-green-800 transition"
-  >
-    Product
-  </a>
-  <a
-    href="#benefits"
-    onClick={() => setMobileMenuOpen(false)}
-    className="text-2xl font-semibold text-green-600 hover:text-green-800 transition"
-  >
-    Benefits
-  </a>
-  <a
-    href="#testimonials"
-    onClick={() => setMobileMenuOpen(false)}
-    className="text-2xl font-semibold text-green-600 hover:text-green-800 transition"
-  >
-    Reviews
-  </a>
-  <a
-    href="#pricing"
-    onClick={() => setMobileMenuOpen(false)}
-    className="text-2xl font-semibold text-green-600 hover:text-green-800 transition"
-  >
-    Pricing
-  </a>
-</div>
-)}
-
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-color-white text-black py-20">
-       <motion.section
-        variants={fadeIn}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+<section className="relative overflow-hidden bg-white text-black py-20">
+  <motion.section
+    variants={fadeIn}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+  >
+    <div className="max-w-7xl mx-auto flex flex-col items-center gap-12 px-6 text-center">
       
+      {/* Heading */}
+      <motion.h1
+        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug sm:leading-tight md:leading-tight max-w-4xl"
+        variants={fadeUp}
       >
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6 items-center">
-          <motion.div variants={fadeUp}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug sm:leading-tight md:leading-tight">
-          Give your child the edge to think sharper, learn faster & shine brighter!
-        </h1>
-            <div className="flex gap-4">
-              <a
-            href="#pricing"
-            className="bg-green-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-green-700 transition shadow-lg text-center"
-          >
-            Order Now
-          </a>
-          <a
-            href="https://www.tiktok.com/@evergreenremedyghana"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-black text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-gray-800 transition shadow-lg text-center"
-          >
-            TikTok Page
-          </a>
-            </div>
-          </motion.div>
-          <motion.div variants={fadeUp}>
-            <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl p-8 shadow-2xl">
-<Image
-  src="/product.png"
-  alt="Forever Arctic Sea"
-  width={500}
-  height={500}
-  className="w-full h-full object-contain rounded-xl"
-/>            </div>
-          </motion.div>
-        </div>
-      </motion.section> 
-      </section>
+        Give your child the edge to think sharper, learn faster & shine brighter!
+      </motion.h1>
 
-    {/* Countdown Timer */}
-<section className="bg-red-600 text-white py-6">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-      {/* Title and Icon */}
-      <div className="flex items-center gap-2">
-        <Clock className="w-6 h-6 animate-pulse" />
-        <span className="font-bold text-lg">Limited Time Offer Ends In:</span>
+      {/* Video */}
+      <motion.div
+        className="relative w-full flex justify-center"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <video
+          className="w-full max-w-2xl rounded-2xl shadow-lg"
+          controls
+          poster="/thumbnail.png"
+        >
+          <source src="/ad.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </motion.div>
+
+      {/* Product Image */}
+      <motion.div
+        variants={fadeUp}
+        className="bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl p-8 shadow-2xl max-w-md w-full"
+      >
+        <Image
+          src="/product.png"
+          alt="Forever Arctic Sea"
+          width={500}
+          height={500}
+          className="w-full h-full object-contain rounded-xl"
+        />
+      </motion.div>
+
+      {/* Order Button */}
+      <div className="text-center mt-8">
+        <a
+          href="#pricing"
+          className="bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition shadow-lg inline-block"
+        >
+          Order Now
+        </a>
       </div>
 
-      {/* Countdown Boxes */}
-      <div className="flex gap-4">
-        {[
-          { label: "Hours", value: String(timeLeft.hours).padStart(2, "0") },
-          { label: "Minutes", value: String(timeLeft.minutes).padStart(2, "0") },
-          { label: "Seconds", value: String(timeLeft.seconds).padStart(2, "0") },
-        ].map((item, index) => (
-          <div
-            key={index}
-            className="bg-white text-red-600 px-4 py-2 rounded-lg font-bold text-center min-w-16 shadow-md hover:scale-105 transition-transform duration-200"
-          >
-            <div className="text-2xl">{item.value}</div>
-            <div className="text-xs">{item.label}</div>
-          </div>
-        ))}
-      </div>
     </div>
-  </div>
+  </motion.section>
 </section>
 
 
-      {/* Product Section */}
-     <motion.section
-      id="product"
-      className="py-20"
-      initial={{ opacity: 0, y: 40 }}
+    {/* Product Section */}
+<motion.section
+  id="product"
+  className="py-20 text-center"
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+>
+  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <motion.div
+      className="mb-12"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+    >
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Forever Arctic Sea
+      </h2>
+      <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+        Premium Kids Brain Booster — Unlock Your Child&apos;s Full Potential
+      </p>
+    </motion.div>
+
+    {/* Animated Product Video */}
+    <motion.div
+      className="rounded-2xl overflow-hidden mb-12 flex justify-center"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Forever Arctic Sea
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Premium Kids Brain Booster - Unlock Your Child&apos;s Full Potential
-          </p>
-        </motion.div>
+      <video
+        className="w-4/5 md:w-1/3 h-auto object-cover rounded-2xl"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/thumbnail.png"
+      >
+        <source src="/product.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </motion.div>
 
-        {/* Content Grid */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Product Video */}
+    {/* Product Info */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      className="max-w-3xl mx-auto"
+    >
+      <h3 className="text-3xl font-bold text-gray-900 mb-6">
+        Give Your Child the Smart Advantage
+      </h3>
+      <p className="text-lg text-gray-600 mb-10">
+        Forever Arctic Sea is enriched with high-quality Omega-3, DHA, and EPA
+        from fish oil and calamari — the essential nutrients that fuel brain
+        development, enhance memory, and boost concentration in growing children.
+      </p>
+
+      {/* Benefits */}
+      <motion.div
+        className="space-y-6 text-left sm:text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: { staggerChildren: 0.2 },
+          },
+        }}
+      >
+        {[
+          {
+            title: "DHA (Docosahexaenoic Acid)",
+            text: "Builds brain cells and improves memory recall.",
+          },
+          {
+            title: "EPA (Eicosapentaenoic Acid)",
+            text: "Enhances focus, calmness, and learning speed.",
+          },
+          {
+            title: "Omega-3 Fatty Acids",
+            text: "Helps the brain communicate faster and clearer.",
+          },
+        ].map((item, index) => (
           <motion.div
-            className="relative"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            key={index}
+            className="flex items-start sm:items-center justify-center gap-3"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 120 },
+              },
+            }}
           >
-            <div className="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden w-64 h-96 mx-auto">
-              <video
-                className="w-full h-full object-cover"
-                controls
-                poster="/thumbnail.png"
-              >
-                <source src="/ad.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+            <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+            <div>
+              <strong className="text-gray-900">{item.title}</strong>
+              <p className="text-gray-600">{item.text}</p>
             </div>
           </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
+  </div>
+</motion.section>
 
-          {/* Product Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-              Give Your Child the Smart Advantage
-            </h3>
-            <p className="text-lg text-gray-600 mb-6">
-              Forever Arctic Sea is enriched with high-quality Omega-3, DHA and EPA
-              from fish oil and calamari — the essential nutrients that fuel brain
-              development, enhance memory and boost concentration in growing children.
-            </p>
-
-            {/* Benefits */}
-            <motion.div
-              className="space-y-4"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: { staggerChildren: 0.2 },
-                },
-              }}
-            >
-              {[
-                {
-                  title: "DHA (Docosahexaenoic Acid)",
-                  text: "Builds brain cells and improves memory recall",
-                },
-                {
-                  title: "EPA (Eicosapentaenoic Acid)",
-                  text: "Enhances focus, calmness and learning speed",
-                },
-                {
-                  title: "Omega-3 Fatty Acids",
-                  text: "Helps the brain communicate faster and clearer",
-                },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start gap-3"
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { type: "spring", stiffness: 120 },
-                    },
-                  }}
-                >
-                  <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <strong className="text-gray-900">{item.title}</strong>
-                    <p className="text-gray-600">{item.text}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-    </motion.section>
 
       {/* Benefits Section */}
     <section id="benefits" className="py-20 bg-gray-50">
@@ -783,169 +749,111 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Choose Your Package
-            </h2>
-            <p className="text-xl text-gray-600">Invest in your child&apos;s future today</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {packages.map((pkg) => (
-              <div 
-                key={pkg.id}
-                className={`bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition ${
-                  pkg.popular ? 'ring-4 ring-green-500' : ''
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="bg-green-500 text-white text-center py-2 font-bold">
-                    MOST POPULAR
-                  </div>
-                )}
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.label}</h3>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold text-gray-900">GH₵{pkg.price}</span>
-                    <span className="text-gray-500 ml-2">/ {pkg.quantity} bottle{pkg.quantity > 1 ? 's' : ''}</span>
-                  </div>
-                  {pkg.save && (
-                    <div className="bg-red-100 text-red-600 px-3 py-1 rounded-full inline-block mb-4 font-semibold text-sm">
-                      Save GH₵{pkg.save}!
-                    </div>
-                  )}
-                  <ul className="space-y-3 mb-8">
-                    <li className="flex items-center gap-2 text-gray-500 ">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                      <span>{pkg.quantity} bottle{pkg.quantity > 1 ? 's' : ''} of Forever Arctic Sea</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-500">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                      <span>Free nationwide delivery</span>
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-500">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                      <span>30-day supply per bottle</span>
-                    </li>
-                  </ul>
-                  <a
-                    onClick={() => handleOrderNow(pkg)}
-                    className={`block w-full text-center py-4 rounded-lg font-bold text-lg transition cursor-pointer ${
-                      pkg.popular 
-                        ? 'bg-green-600 text-white hover:bg-green-700' 
-                        : 'bg-green-600 text-white hover:bg-green-700'
-                    }`}
-                  >
-                    Order Now
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-     {/* Contact & Locations */}
-<section className="py-20 bg-gray-900 text-white">
+          {/* Countdown Timer */}
+<section className="bg-red-600 text-white py-6">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="grid md:grid-cols-2 gap-12">
-      {/* Contact Info */}
-      <div>
-        <h2 className="text-3xl font-bold mb-6">Get In Touch</h2>
-        <div className="space-y-4">
-          <a
-            href="mailto:supplegenix@gmail.com"
-            className="flex items-center gap-3 hover:text-green-400 transition"
-          >
-            <Mail className="w-6 h-6" />
-            <span className="text-lg">supplegenix@gmail.com</span>
-          </a>
+    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+      {/* Title and Icon */}
+      <div className="flex items-center gap-2">
+        <Clock className="w-6 h-6 animate-pulse" />
+        <span className="font-bold text-lg">Limited Time Offer Ends In:</span>
+      </div>
 
-          <div className="flex items-start gap-3">
-            <MapPin className="w-6 h-6 flex-shrink-0" />
-            <div>
-              <div className="font-bold mb-2">Our Offices:</div>
-              <div className="text-gray-300">
-                📍 Accra<br />
-                📍 Kumasi<br />
-                📍 Tamale<br />
-                <span className="text-green-400 font-semibold">
-                  We deliver nationwide!
-                </span>
-              </div>
-            </div>
+      {/* Countdown Boxes */}
+      <div className="flex gap-4">
+        {[
+          { label: "Hours", value: String(timeLeft.hours).padStart(2, "0") },
+          { label: "Minutes", value: String(timeLeft.minutes).padStart(2, "0") },
+          { label: "Seconds", value: String(timeLeft.seconds).padStart(2, "0") },
+        ].map((item, index) => (
+          <div
+            key={index}
+            className="bg-white text-red-600 px-4 py-2 rounded-lg font-bold text-center min-w-16 shadow-md hover:scale-105 transition-transform duration-200"
+          >
+            <div className="text-2xl">{item.value}</div>
+            <div className="text-xs">{item.label}</div>
           </div>
-        </div>
+        ))}
       </div>
-
-      {/* Socials Section */}
-      <div>
-        <h3 className="text-2xl font-semibold mb-4">Follow Us</h3>
-        <div className="flex items-center gap-4">
-          {/* TikTok */}
-          <a
-            href="https://www.tiktok.com/@evergreenremedyghana?_t=ZM-90WhVxvGppY&_r=1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-black p-3 rounded-full hover:scale-110 transition-transform"
-          >
-            <svg
-              className="w-7 h-7 text-white"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-            </svg>
-          </a>
-
-          {/* Facebook */}
-          <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-600 p-3 rounded-full hover:scale-110 transition-transform"
-          >
-            <svg
-              className="w-7 h-7 text-white"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M22 12.07C22 6.48 17.52 2 11.93 2S1.86 6.48 1.86 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.4v-2.22c0-2.37 1.4-3.68 3.55-3.68 1.03 0 2.1.18 2.1.18v2.31h-1.18c-1.16 0-1.52.72-1.52 1.45v1.96h2.59l-.41 2.9h-2.18v7.03c4.78-.75 8.44-4.91 8.44-9.93z" />
-            </svg>
-          </a>
-
-          {/* WhatsApp */}
-          <a
-            href="https://wa.me/233501234567"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-green-500 p-3 rounded-full hover:scale-110 transition-transform"
-          >
-            <svg
-              className="w-7 h-7 text-white"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M16.6 13.3c-.3-.2-1.7-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.7.9-.9 1.1-.1.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.8-.7-1.4-1.5-1.6-1.8-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1s1 2.4 1.1 2.6c.1.2 2 3.1 4.8 4.4.7.3 1.3.6 1.7.7.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.1-1.3-.1-.1-.3-.2-.5-.3zM12.1 2C6.5 2 2 6.4 2 12c0 2 .5 3.8 1.4 5.3L2 22l4.9-1.3c1.5.8 3.2 1.2 5 1.2 5.6 0 10.1-4.4 10.1-10S17.7 2 12.1 2z" />
-            </svg>
-          </a>
-        </div>
-
-        <p className="text-gray-400 mt-6">
-          Watch testimonials, product demos and educational content about child
-          brain health!
-        </p>
-      </div>
-    </div>
-
-    <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-      <p>© 2025 Evergreen Remedy Ghana. All rights reserved.</p>
     </div>
   </div>
 </section>
+
+      {/* Pricing */}
+<section id="pricing" className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Choose Your Package
+      </h2>
+      <p className="text-xl text-gray-600">Invest in your child&apos;s future today</p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {packages.map((pkg) => (
+        <div 
+          key={pkg.id}
+          className={`bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition ${
+            pkg.popular ? 'ring-4 ring-green-500' : ''
+          }`}
+        >
+          {pkg.popular && (
+            <div className="bg-green-500 text-white text-center py-2 font-bold">
+              MOST POPULAR
+            </div>
+          )}
+          <div className="p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.label}</h3>
+            <div className="mb-4">
+              <span className="text-3xl font-bold text-gray-900">GH₵{pkg.price}</span>
+              <span className="text-gray-500 font-extrabold ml-2 text-lg">
+                / {pkg.quantity} bottle{pkg.quantity > 1 ? 's' : ''}
+              </span>
+            </div>
+            {pkg.save && (
+              <div className="bg-red-100 text-red-600 px-3 py-1 rounded-full inline-block mb-4 font-semibold text-sm">
+                Save GH₵{pkg.save}!
+              </div>
+            )}
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center gap-2 text-gray-500">
+                <CheckCircle className="w-5 h-5 text-green-600" />
+                <span className="text-lg font-semibold">
+                  {pkg.quantity} bottle{pkg.quantity > 1 ? 's' : ''} of Forever Arctic Sea
+                </span>
+              </li>
+
+              {/* Show free delivery only for Family Pack and Value Pack */}
+              {(pkg.label === "Family Pack" || pkg.label === "Value Pack") && (
+                <li className="flex items-center gap-2 text-gray-500">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <span>Free nationwide delivery</span>
+                </li>
+              )}
+
+              <li className="flex items-center gap-2 text-gray-500">
+                <CheckCircle className="w-5 h-5 text-green-600" />
+                <span>30-60 day supply per bottle</span>
+              </li>
+            </ul>
+
+            <a
+              onClick={() => handleOrderNow(pkg)}
+              className={`block w-full text-center py-4 rounded-lg font-bold text-lg transition cursor-pointer ${
+                pkg.popular 
+                  ? 'bg-green-600 text-white hover:bg-green-700' 
+                  : 'bg-green-600 text-white hover:bg-green-700'
+              }`}
+            >
+              Order Now
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Floating CTA Button */}
       {!showCheckout && (
