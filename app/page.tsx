@@ -69,7 +69,7 @@ const EvergreenLogo = () => (
 
 
 const EvergreenRemedyWebsite = () => {
-  const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 45, seconds: 30 });
+  const [timeLeft, setTimeLeft] = useState({ hours: 6, minutes: 45, seconds: 30 });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const [selectedPackage, setSelectedPackage] = useState(null);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -108,14 +108,14 @@ const EvergreenRemedyWebsite = () => {
           seconds--;
         } else {
           seconds = 59;
-          if (minutes > 0) {
+          if (minutes > 0) { 
             minutes--;
           } else {
             minutes = 59;
             if (hours > 0) {
               hours--;
             } else {
-              hours = 23;
+              hours = 6;
             }
           }
         }
@@ -592,12 +592,22 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
       className="max-w-3xl mx-auto"
     >
       <h3 className="text-3xl font-bold text-gray-900 mb-6">
-        Give Your Child the Smart Advantage
+       Every Parent Wants Their Child to Excel
       </h3>
       <p className="text-lg text-gray-600 mb-10">
-        Forever Arctic Sea is enriched with high-quality Omega-3, DHA, and EPA
-        from fish oil and calamari — the essential nutrients that fuel brain
-        development, enhance memory, and boost concentration in growing children.
+      Have you ever sat with your child to revise schoolwork and they just couldn’t remember what you taught them — even after several tries? 😔
+ You know they’re trying, but somehow the information just doesn’t stick…
+
+      </p>
+      <p className="text-lg text-gray-600 mb-10">
+        It breaks your heart as a parent, right? 💔
+      </p>
+      <p className="text-lg text-gray-600 mb-10">
+        The truth is — it’s not that your child isn’t smart.
+ Most kids today don’t get enough essential nutrients that fuel their brain for focus, memory and understanding.
+      </p>
+      <p  className="text-lg text-gray-600 mb-10">
+       <span className="font-bold">That’s why many parents are now turning to Forever Arctic Sea</span> — a premium supplement rich in Omega-3, DHA and EPA that supports healthy brain development and sharper memory in children. 🧠✨
       </p>
 
       {/* Benefits */}
@@ -677,7 +687,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
         {
           icon: "🧠",
           title: "Sharper Memory",
-          desc: "Supports brain health to help kids remember schoolwork, retain what they learn, and perform better during exams."
+          desc: "Supports brain health to help kids remember schoolwork, retain what they learn and perform better during exams."
         },
         {
           icon: "📚",
@@ -687,7 +697,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
         {
           icon: "⭐",
           title: "Better Grades",
-          desc: "Improved focus, memory, and learning combine to enhance academic results, making parents proud and kids motivated."
+          desc: "Improved focus, memory and learning combine to enhance academic results, making parents proud and kids motivated."
         }
       ].map((benefit, idx) => (
         <motion.div
@@ -719,7 +729,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-             Quotes
+             Testimonials
             </h2>
             <p className="text-xl text-gray-600">Reviews from Parents who have tried our Products</p>
           </div>
