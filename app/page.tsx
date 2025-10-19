@@ -1010,7 +1010,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
       {/* Floating CTA Button */}
       {!showCheckout && (
   <a
-  href="https://wa.me/233597308155?text=Hi! I’d like to place an order or make an inquiry."
+  href="https://wa.me/233597308155?text=Hi! I’d like to place an order for the kids brain booster."
   target="_blank"
   rel="noopener noreferrer"
   className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50 animate-bounce"
