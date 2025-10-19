@@ -5,10 +5,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-    const { name, phone, location, quantity, packageType, price, note } = await req.json();
+    const { name, phone, whatsapp, location, quantity, packageType, price, note } = await req.json();
 
     // Validate required fields
-    if (!name || !phone || !location || !packageType) {
+    if (!name || !phone || !whatsapp || !location || !packageType) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -20,6 +20,7 @@ Customer Details:
 -----------------
 Name: ${name}
 Phone: ${phone}
+WhatsApp: ${whatsapp}
 Location: ${location}
 
 Order Details:

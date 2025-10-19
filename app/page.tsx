@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Clock, MapPin, Mail, ShoppingCart, Star, CheckCircle, Menu, X, ArrowLeft, Phone, User, Package, MessageSquare } from 'lucide-react';
+import { Clock, MapPin, Mail, ShoppingCart, Star, CheckCircle, MessageCircle , Menu, X, ArrowLeft, Phone, User, Package, MessageSquare } from 'lucide-react';
 import {motion, Variants} from "framer-motion"
 import Image from 'next/image';
 // Logo Component
@@ -86,11 +86,32 @@ const EvergreenRemedyWebsite = () => {
     visible: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
   };
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+const totalSlides = 5;
+
+const nextSlide = () => {
+  setCurrentSlide((prev) => (prev + 1) % totalSlides);
+};
+
+const prevSlide = () => {
+  setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+};
+
+// Auto-slide every 5 seconds
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  }, 5000);
+  return () => clearInterval(timer);
+}, []);
+
+
   
   // Form state
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    whatsapp: '',
     location: '',
     quantity: 1,
     packageType: '',
@@ -170,6 +191,10 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     alert('Please enter your phone number.');
     return;
   }
+  if (!formData.whatsapp.trim()) {
+    alert('Please enter your WhatsApp number.');
+    return;
+  }
   if (!formData.location.trim()) {
     alert('Please select your delivery location.');
     return;
@@ -208,6 +233,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     setFormData({
       name: '',
       phone: '',
+      whatsapp: '',
       location: '',
       quantity: 1,
       packageType: '',
@@ -351,21 +377,41 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
                 </div>
 
                 {/* Phone */}
-                <div>
-                  <label className="block text-black font-semibold mb-2">
-                    <Phone className="w-5 h-5 inline mr-2" />
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                    placeholder="e.g., 0244123456"
-                  />
-                </div>
+<div>
+  <label className="block text-black font-semibold mb-2">
+    <Phone className="w-5 h-5 inline mr-2" />
+    Phone Number *
+  </label>
+  <input
+    type="tel"
+    name="phone"
+    value={formData.phone}
+    onChange={handleInputChange}
+    required
+    className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+    placeholder="e.g., 0244123456"
+  />
+</div>
+
+{/* WhatsApp */}
+<div>
+  <label className="block text-black font-semibold mb-2">
+    <i className="fa-brands fa-whatsapp text-green-600 mr-2"></i>
+    WhatsApp Number (Optional)
+  </label>
+  <input
+    type="tel"
+    name="whatsapp"
+    value={formData.whatsapp}
+    onChange={handleInputChange}
+    className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+    placeholder="e.g., 0244123456"
+  />
+  <p className="text-sm text-gray-500 mt-1">
+    We may contact you on WhatsApp for delivery confirmation.
+  </p>
+</div>
+
 
                 {/* Location */}
 <div>
@@ -486,7 +532,7 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
         className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-snug sm:leading-tight md:leading-tight max-w-4xl"
         variants={fadeUp}
       >
-        Give your child the edge to think sharper, learn faster & shine brighter!
+       Help Your Child Learn Faster, Remember Better & Excel In School
       </motion.h1>
 
       {/* Video */}
@@ -724,6 +770,68 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
   </div>
 </section>
 
+{/* Slideshow Section */}
+<section className="relative w-full py-16 bg-gray-100 overflow-hidden">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+   
+
+    {/* Slideshow Container */}
+    <div className="relative w-full overflow-hidden rounded-2xl">
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{
+          transform: `translateX(-${currentSlide * 100}%)`,
+        }}
+      >
+        {[
+          "/fp1.png",
+          "/fp2.png",
+          "/fp3.png",
+          "/fp4.png",
+          "/fp5.png",
+        ].map((img, idx) => (
+          <div key={idx} className="min-w-full h-[400px] relative">
+            <Image
+              src={img}
+              alt={`Slide ${idx + 1}`}
+              fill
+              className="object-contain"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevSlide}
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-3 rounded-full shadow-md transition"
+      >
+        <i className="fas fa-chevron-left"></i>
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-3 rounded-full shadow-md transition"
+      >
+        <i className="fas fa-chevron-right"></i>
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {[0, 1, 2, 3, 4].map((idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            className={`w-3 h-3 rounded-full ${
+              currentSlide === idx ? "bg-green-600" : "bg-gray-300"
+            }`}
+          ></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
       {/* Testimonials */}
       <section id="testimonials" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -863,16 +971,53 @@ const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     </div>
   </div>
 </section>
+{/* Call Evergreen Remedy Section */}
+<section className="bg-green-50 py-16">
+  <div className="max-w-4xl mx-auto text-center px-6">
+    <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-4">
+      Need Help? Call Evergreen Remedy Ghana
+    </h2>
+    <p className="text-gray-600 mb-8 text-lg">
+      Our support team is available to assist you with orders, product inquiries, or delivery information.
+    </p>
+
+    {/* Call Button */}
+    <a
+      href="tel:+233597308155"
+      className="inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition-all shadow-lg"
+    >
+      <i className="fa-solid fa-phone text-xl"></i>
+      Call Us Now
+    </a>
+
+    {/* Alternative Contact Info */}
+    <p className="mt-6 text-gray-500 text-sm">
+      You can also reach us via WhatsApp at{" "}
+      <a
+        href="https://wa.me/233597308155?text=Hi! I’d like to make an inquiry about Evergreen Remedy."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-green-700 font-medium hover:underline"
+      >
+        +233 597 308 155
+      </a>
+    </p>
+  </div>
+</section>
+
 
 
       {/* Floating CTA Button */}
       {!showCheckout && (
-        <a
-          href="#pricing"
-          className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-2xl hover:bg-green-700 transition transform hover:scale-110 z-40"
-        >
-          <ShoppingCart className="w-6 h-6" />
-        </a>
+  <a
+  href="https://wa.me/233597308155?text=Hi! I’d like to place an order or make an inquiry."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50 animate-bounce"
+>
+  <i className="fa-brands fa-whatsapp text-3xl"></i>
+</a>
+
       )}
       </div>
       )}
