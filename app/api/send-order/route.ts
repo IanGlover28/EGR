@@ -39,7 +39,7 @@ Submitted via the Evergreen Remedy Ghana website.
     // Send email via Resend
     const { error } = await resend.emails.send({
       from: "Evergreen Remedy Ghana <onboarding@resend.dev>", // or your verified domain sender
-      to: ["iantitusglover2@gmail.com"], // recipient email
+      to: ["supplegenixsaleshub@gmail.com"], // recipient email
       subject: `New Order - ${packageType}`,
       text: emailText,
     });
