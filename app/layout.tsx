@@ -26,7 +26,7 @@ export default function RootLayout({
         {children}
 
         {/* ✅ Meta Pixel Script */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -36,7 +36,7 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '850404474110542');
+            fbq('init', '840496878444318');
             fbq('track', 'PageView');
           `}
         </Script>
